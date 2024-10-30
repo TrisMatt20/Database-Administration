@@ -12,14 +12,27 @@
     width: 100%;
     font-weight: bold;
     font-family: Arial;
-    cursor: default; /* Prevent pointer cursor on hover */
+    cursor: default; 
 }
 
 .custom-navbar .navbar-brand:hover {
-    color: white; /* Prevent color change on hover */
-    text-decoration: none; /* Remove underline or any hover effect */
+    color: white; 
+    text-decoration: none; 
 }
 
 .custom-navbar .highlight-friends {
-    color: #F261FA; /* Color for "FRIENDS" */
+    color: #F261FA; 
 }
+
+.custom-navbar2 {
+    background-color: #9B7EBD; 
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); 
+}
+
+
+
+
+
+
+
+
