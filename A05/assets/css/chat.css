@@ -56,7 +56,6 @@
     word-wrap: break-word;
 }
 
-/* Adjustments to avoid overlapping */
 #chat-container {
     display: flex;
     flex-direction: column;

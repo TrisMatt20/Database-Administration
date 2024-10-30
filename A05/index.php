@@ -1,8 +1,7 @@
 <?php
 include("connect.php"); 
 
-$query = "
-  SELECT 
+$query = " SELECT 
     u.firstName AS senderFirstName,
     u.lastName AS senderLastName,
     m.messages,
@@ -15,22 +14,13 @@ $query = "
     users u ON m.senderID = u.userID
   JOIN 
     groupchat gc ON m.groupChatID = gc.groupChatID
-  INNER JOIN 
-    (SELECT senderID, MAX(messageID) AS latestMessageID 
-     FROM messages 
-     GROUP BY senderID) AS latest 
-  ON 
-    m.senderID = latest.senderID 
-    AND m.messageID = latest.latestMessageID
   WHERE 
     m.groupChatID = gc.groupChatID
   ORDER BY 
-    m.messageID ASC";
+    m.messageID DESC
+  LIMIT 6";
 
-// Execute the query
 $result = executeQuery($query);
-
-
 ?>
 
 
@@ -55,14 +45,14 @@ $result = executeQuery($query);
         </div>
   </nav>
 
-  <section style="background-color: #9B7EBD;">
+  <section style="background-color: #9B7EBD; font-family: Arial, sans-serif;">
   <div class="container py-5">
     <div class="row">
       <div class="col-md-12">
         <div class="card" id="chat3" style="border-radius: 15px;">
           <div class="card-body">
             <div class="row">
-              <!-- Chat List Section -->
+              <!-- Chat Lists Section -->
               <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
                 <div class="p-3">
                   <div class="input-group rounded mb-3">
@@ -73,9 +63,9 @@ $result = executeQuery($query);
                     </span>
                   </div>
 
-                  <div data-mdb-perfect-scrollbar-init style="position: relative; height: 400px">
+                  <div data-mdb-perfect-scrollbar-init style="position: relative; height: 400px; overflow-y: auto;">
                     <ul class="list-unstyled mb-0">
-                      <!-- Chat Item 1 -->
+                      <!-- Chat Item-1 -->
                       <li class="p-2 border-bottom">
                         <a href="#!" class="d-flex justify-content-between">
                           <div class="d-flex flex-row">
@@ -94,7 +84,7 @@ $result = executeQuery($query);
                           </div>
                         </a>
                       </li>
-                      <!-- Chat Item 2 -->
+                      <!-- Chat Item-2 -->
                       <li class="p-2 border-bottom">
                         <a href="#!" class="d-flex justify-content-between">
                           <div class="d-flex flex-row">
@@ -113,7 +103,7 @@ $result = executeQuery($query);
                           </div>
                         </a>
                       </li>
-                      <!-- Chat Item 3 -->
+                      <!-- Chat Item-3 -->
                       <li class="p-2 border-bottom">
                         <a href="#!" class="d-flex justify-content-between">
                           <div class="d-flex flex-row">
@@ -137,47 +127,54 @@ $result = executeQuery($query);
               </div>
 
               <!-- Chat Messages Section -->
-<div class="col-md-6 col-lg-7 col-xl-8">
-  <div class="pt-3 pe-3" data-mdb-perfect-scrollbar-init style="position: relative; height: 400px">
-    <?php
-    while ($row = mysqli_fetch_assoc($result)) {
-        
-        $isSender = $row['senderID'] == 1;
-    ?>
-        <div class="d-flex <?php echo $isSender ? 'justify-content-end' : 'justify-content-start'; ?> mb-3">
-            <!-- Display avatar only for the receiver (left side) -->
-            <?php if (!$isSender): ?>
-                <img src="assets/img/<?php echo strtolower($row['senderFirstName']); ?>.png" alt="avatar" style="width: 45px; height: 45px;" class="me-2">
-            <?php endif; ?>
+              <div class="col-md-6 col-lg-7 col-xl-8">
+                <!-- Scrollable message container -->
+                <div class="chat-messages-container" style="height: 400px; overflow-y: auto; padding-right: 15px;">
+                  <?php
+                  
+                  $messages = [];
+                  while ($row = mysqli_fetch_assoc($result)) {
+                      $messages[] = $row;
+                  }
+                  $messages = array_reverse($messages); 
+                  foreach ($messages as $row) {
+                      $isSender = $row['senderID'] == 1;
+                      $profilePic = '';
+                      if ($row['senderID'] == 1) {
+                          $profilePic = "assets/img/TM.png";
+                      } elseif ($row['senderID'] == 2) {
+                          $profilePic = "assets/img/louie.png";
+                      } elseif ($row['senderID'] == 3) {
+                          $profilePic = "assets/img/jade.png";
+                      }
+                  ?>
+                    <div class="d-flex <?php echo $isSender ? 'justify-content-end' : 'justify-content-start'; ?> mb-3">
+                      <?php if (!$isSender): ?>
+                        <img src="<?php echo $profilePic; ?>" alt="avatar" style="width: 45px; height: 45px;" class="me-2">
+                      <?php endif; ?>
 
-            
-            <div>
-                <p class="small p-2 <?php echo $isSender ? 'text-white bg-primary' : 'bg-body-tertiary'; ?> rounded-3">
-                    <?php echo htmlspecialchars($row['messages']); ?>
-                </p>
-                <p class="small text-muted <?php echo $isSender ? 'text-end' : ''; ?>">
-                    9:45 AM | Oct 30
-                </p>
-            </div>
+                      <div>
+                        <p class="small p-2 <?php echo $isSender ? 'text-white bg-primary' : 'bg-body-tertiary'; ?> rounded-3">
+                          <?php echo htmlspecialchars($row['messages']); ?>
+                        </p>
+                        <p class="small text-muted <?php echo $isSender ? 'text-end' : ''; ?>">
+                          9:45 AM | Oct 30
+                        </p>
+                      </div>
 
-            
-            <?php if ($isSender): ?>
-                <img src="assets/img/<?php echo strtolower($row['senderFirstName']); ?>.png" alt="avatar" style="width: 45px; height: 45px;" class="ms-2">
-            <?php endif; ?>
-        </div>
-    <?php } ?>
-  </div>
+                      <?php if ($isSender): ?>
+                        <img src="<?php echo $profilePic; ?>" alt="avatar" style="width: 45px; height: 45px;" class="ms-2">
+                      <?php endif; ?>
+                    </div>
+                  <?php } ?>
+                </div>
 
-  <!-- Message Input Section -->
-  <div class="mt-3">
-    <div class="input-group">
-      <input type="text" class="form-control form-control-lg" id="exampleFormControlInput2" placeholder="Type message">
-      <button class="btn btn-link text-muted" type="button"><i class="fas fa-paperclip"></i></button>
-      <button class="btn btn-link text-muted" type="button"><i class="fas fa-smile"></i></button>
-      <button class="btn btn-primary" type="button"><i class="fas fa-paper-plane"></i></button>
-    </div>
-  </div>
-</div>
+                <div class="mt-3">
+                  <div class="input-group">
+                    <input type="text" class="form-control form-control-lg" id="exampleFormControlInput2" placeholder="Type message">
+                  </div>
+                </div>
+              </div>
 
             </div>
           </div>
@@ -187,8 +184,11 @@ $result = executeQuery($query);
   </div>
 </section>
 
+
+
+
     <footer class="footer">
-      <h5 style="Text-align: center;">All Rights reserved.</h5>
+      <h5 style="Text-align: center;">© All Rights reserved.</h5>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
