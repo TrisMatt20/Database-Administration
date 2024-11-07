@@ -1,5 +1,8 @@
 .body {
     background-color: #D4BEE4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .custom-navbar {
@@ -12,27 +15,24 @@
     width: 100%;
     font-weight: bold;
     font-family: Arial;
-    cursor: default; 
-}
-
-.custom-navbar .navbar-brand:hover {
-    color: white; 
-    text-decoration: none; 
+    cursor: default;
 }
 
 .custom-navbar .highlight-friends {
-    color: #F261FA; 
+    color: #F261FA;
 }
 
-.custom-navbar2 {
-    background-color: #9B7EBD; 
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); 
+.footer {
+    padding: 1rem;
+    text-align: center;
+    background-color: #323A95;
+    color: white;
+    margin-top: auto;
 }
 
-
-
-
-
-
-
-
+/* Hide conversation list on mobile */
+@media (max-width: 768px) {
+    .chat-list-container, .input-group {
+        display: none;
+    }
+}

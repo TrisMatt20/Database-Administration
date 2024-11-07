@@ -15,20 +15,19 @@
     margin-top: -.75rem;
 }
 
-/* Adjust chat container and message alignment */
 .chat-container {
     display: flex;
     flex-direction: column;
     padding: 1rem;
     max-height: 1000px;
-    overflow-y: auto;  
+    overflow-y: auto;
 }
 
 .message {
     display: flex;
     align-items: center;
     margin-bottom: 0.5rem;
-    max-width: 80%; 
+    max-width: 80%;
 }
 
 .message-left {
@@ -56,14 +55,18 @@
     word-wrap: break-word;
 }
 
-#chat-container {
-    display: flex;
-    flex-direction: column;
-}
+@media (max-width: 576px) {
+    .chat-messages-container {
+        padding: 0.5rem;
+    }
 
-#chat-box {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 0.5rem;
+    .message img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .message-content {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
 }
