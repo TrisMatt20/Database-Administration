@@ -1,0 +1,115 @@
+#chat3 .form-control {
+    border-color: black;
+}
+
+#chat3 .form-control:focus {
+    border-color: black;
+    box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.badge-dot {
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin-left: 2.9rem;
+    margin-top: -.75rem;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    max-height: 1000px;
+    overflow-y: auto;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    max-width: 80%;
+}
+
+.message-left {
+    justify-content: flex-start;
+}
+
+.message-right {
+    justify-content: flex-end;
+    color: white;
+    background-color: #007bff;
+    border-radius: 15px;
+    padding: 8px 12px;
+}
+
+.message .avatar {
+    width: 30px;
+    height: 30px;
+    margin-right: 0.5rem;
+}
+
+.message-content {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 8px 12px;
+    word-wrap: break-word;
+}
+
+.action-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    color: #5D5959;
+    background: #f1f1f1;
+    border-radius: 450px;
+    height: 37px;
+    margin-inline: 10px;
+}
+
+.action-buttons .delete{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-buttons i{
+    cursor: pointer;
+    padding-inline: 6px;
+    padding-block: 10px;
+}
+
+.message-bubble:hover .action-buttons{
+    display: block;
+}
+
+.btn-delete{
+    width: 38px !important;
+    height: 38px;
+    border: none;
+    border-radius: 35px;
+    background: none;
+    color: #A7A7A7;
+    font-weight: bold !important;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media (max-width: 576px) {
+    .chat-messages-container {
+        padding: 0.5rem;
+    }
+
+    .message img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .message-content {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+}
