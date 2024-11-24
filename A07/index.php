@@ -56,6 +56,13 @@ if (isset($_POST['btnDeleteMess'])) {
   header("Location: index.php");
 }
 
+
+// if (isset($_POST['btnEditMessage'])) {
+//   $messageID = $_POST['messageID'];
+//   $editMessQuery = "UPDATE messages SET messages = '$newMessage' WHERE messageID = '$messageID'";
+//   executeQuery($editMessQuery);
+//   header("index.php");
+// }
 ?>
 
 <!doctype html>
@@ -187,6 +194,12 @@ if (isset($_POST['btnDeleteMess'])) {
                               <i class="fa-solid fa-trash"></i>
                             </button>
                           </div>
+                          <div class="action-buttons">
+                            <button type="button" class="btn-edit ms-auto" data-bs-toggle="modal"
+                              data-bs-target="#editModal" data-message-id="<?php echo $row['messageID']; ?>">
+                              <i class="fa-solid fa-edit"></i>
+                            </button>
+                          </div>
                         <?php endif; ?>
                         <!-- Receiver profile pic -->
                         <?php if (!$isSender): ?>
@@ -252,6 +265,17 @@ if (isset($_POST['btnDeleteMess'])) {
                       </div>
                     </form>
                   </div>
+                  <!-- Edit Message -->
+                  <!-- <div class="mt-3">
+                    <form action="" method="post">
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="<php echo $messages; ?>"
+                          name="messageInput">
+                        <button class="btn btn-outline-secondary" type="submit" id="btnEditMessage"
+                          name="btnEditMessage"><i class="fa-solid fa-paper-plane"></i></button>
+                      </div>
+                    </form>
+                  </div> -->
                 </div>
               </div>
             </div>

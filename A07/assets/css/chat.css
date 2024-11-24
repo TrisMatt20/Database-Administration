@@ -97,6 +97,20 @@
     align-items: center;
 }
 
+.btn-edit {
+    width: 38px !important;
+    height: 38px;
+    border: none;
+    border-radius: 35px;
+    background: none;
+    color: #A7A7A7;
+    font-weight: bold !important;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 @media (max-width: 576px) {
     .chat-messages-container {
