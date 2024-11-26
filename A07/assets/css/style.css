@@ -22,9 +22,37 @@
     color: #F261FA;
 }
 
+.input-message {
+    background: #2B3035;
+}
+
+.dissmiss-edit {
+    border-radius: 450px;
+    /* padding: 20px; */
+}
+
+.edit-exit {
+    color: #A7A7A7;
+}
+
+.edit-exit:hover {
+    cursor: pointer;
+}
+
+.input-group{
+    border-radius:0px 0px 10px 10px;
+}
+
+.button-send, .button-update{
+    border: none !important;
+    border-radius: 450px !important;
+}
+
 /* Hide conversation list on mobile */
 @media (max-width: 768px) {
-    .chat-list-container, .input-group {
+
+    .chat-list-container,
+    .input-group {
         display: none;
     }
 }

@@ -26,7 +26,6 @@
 .message {
     display: flex;
     align-items: center;
-    margin-bottom: 0.5rem;
     max-width: 80%;
 }
 
@@ -55,19 +54,21 @@
     word-wrap: break-word;
 }
 
-.action-buttons{
+.action-button{
     display: flex;
     align-items: center;
     justify-content: center;
     display: none;
     color: #5D5959;
-    background: #f1f1f1;
     border-radius: 450px;
     height: 37px;
-    margin-inline: 10px;
 }
 
-.action-buttons .delete{
+.action-button:hover{
+    background: #2B3035;
+}
+
+.action-button .delete{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,7 +80,7 @@
     padding-block: 10px;
 }
 
-.message-bubble:hover .action-buttons{
+.message-bubble:hover .action-button{
     display: block;
 }
 

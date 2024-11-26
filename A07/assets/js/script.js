@@ -8,4 +8,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+var editFormContainer = document.getElementById('editFormContainer');
+var inputMessContainer = document.getElementById('inputMessContainer');
+var editMessageID = document.getElementById('editMessageID');
+var editMessageInput = document.getElementById('editMessageInput');
+
+function openEditForm(messageID, currentMessage) {
+
+    editMessageID.value = messageID;
+    editMessageInput.value = currentMessage;
+
+    inputMessContainer.classList.add('d-none');
+    editFormContainer.classList.remove('d-none');
+
+}
+
+function dismissEditForm() {
+    inputMessContainer.classList.remove('d-none');
+    editFormContainer.classList.add('d-none');
+}
+
+
 
