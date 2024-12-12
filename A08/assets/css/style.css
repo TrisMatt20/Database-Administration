@@ -1,0 +1,48 @@
+body {
+    overflow: hidden;
+}
+
+.navbar-brand {
+    color: white !important;
+}
+
+.navbar-brand img {
+    height: 45px;
+}
+
+.filter-container {
+    padding-top: 80px;
+    padding-inline: 20px;
+    overflow: hidden;
+}
+
+.table-container {
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 430px;
+    border: 1px solid #D5D5D5;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #800000 !important;
+    color: white !important;
+    font-weight: 500 !important;
+    border-top: 1px solid #D5D5D5;
+}
+
+thead tr {
+    width: 100%;
+}
+
+.center-data{
+    text-align: center;
+}
+
+@media(max-width:578px) {
+    .table-container {
+        overflow-x: scroll;
+    }
+}
